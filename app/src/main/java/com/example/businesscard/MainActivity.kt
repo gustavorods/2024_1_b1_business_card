@@ -8,9 +8,12 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -30,7 +33,8 @@ class MainActivity : ComponentActivity() {
             BusinessCardTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-
+                    IntroductionCard()
+                    infoCard()
                 }
             }
         }
@@ -64,7 +68,7 @@ fun IntroductionCard() {
         Row(
             Modifier
                 .fillMaxWidth(),
-            Arrangement.Center
+            Arrangement.Center,
         ) {
             Text(text = "Back-end developer",
                 fontSize = 15.sp)
@@ -72,11 +76,65 @@ fun IntroductionCard() {
     }
 }
 
+@Composable
+fun infoCard() {
+    var phoneIcon = painterResource(R.drawable.phone_solid__1_)
+    var linkidin = painterResource(R.drawable.linkedin)
+    var email = painterResource(R.drawable.envelope_solid)
+    Column(
+        Modifier
+            .fillMaxWidth(),
+            Arrangement.Bottom,
+           horizontalAlignment = Alignment.CenterHorizontally
+
+    ) {
+        Column {
+            Row() {
+                Image(painter = phoneIcon,
+                    contentDescription = null,
+                    modifier = Modifier
+                        .width(25.dp)
+                )
+                Spacer(modifier = Modifier.width(10.dp))
+                Text(text = "++55 (11) 99999-9999")
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Row() {
+                Image(painter = linkidin,
+                    contentDescription = null,
+                    modifier = Modifier
+                        .width(25.dp)
+                )
+                Spacer(modifier = Modifier.width(10.dp))
+                Text(text = "@Gustavo Rodrigues")
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Row(
+                Modifier
+                    .padding(bottom = 10.dp)
+            ) {
+                Image(painter = email,
+                    contentDescription = null,
+                    modifier = Modifier
+                        .width(25.dp)
+                )
+                Spacer(modifier = Modifier.width(10.dp))
+
+                Text(text = "gustavo.rlsilva07@gmail.com")
+            }
+        }
+    }
+}
 
 @Composable
 @Preview
 fun cardPreview() {
     Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
         IntroductionCard()
+        infoCard()
     }
 }
